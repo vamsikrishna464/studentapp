@@ -1,0 +1,81 @@
+<div class="container">
+    <mat-card class="form_design">
+    <div class="col-12 form_design_one">
+        <form [formGroup]="studentForm" (ngSubmit)="addStudent()">
+            <mat-form-field class="col-12">
+                <mat-label>Name</mat-label>
+                <input type="text" matInput formControlName="name" required>
+            </mat-form-field>
+            <mat-form-field class="col-6">
+                <mat-label>Department</mat-label>
+                <mat-select formControlName="dept">
+                  <mat-option *ngFor="let dept of departments" [value]="dept.dept_name">
+                    {{dept.dept_name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            <mat-form-field class="col-6">
+                <mat-label>Age</mat-label>
+                <input type="text" matInput formControlName="age" required>
+            </mat-form-field>
+            <div class="col-12 mt-2">
+                <mat-label class="col-12">Gender</mat-label>
+                <mat-radio-group class="col-12" formControlName="gender" aria-label="Select an option">
+                    <mat-radio-button value="Male">Male</mat-radio-button>
+                    <mat-radio-button value="Female">Female</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <mat-form-field class="col-6 mt-2">
+                <mat-label>college</mat-label>
+                <input type="text" matInput formControlName="college" required>
+            </mat-form-field>
+            <div formGroupName="address">
+                <h3>Address</h3>
+                <mat-form-field>
+                    <mat-label>Street</mat-label>
+                    <input type="text" matInput formControlName="street">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>City</mat-label>
+                    <input type="text" matInput formControlName="city">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>State</mat-label>
+                    <input type="text" aria-label="State" matInput formControlName="state" [matAutocomplete]="stateauto">
+                    <mat-autocomplete #stateauto="matAutocomplete">
+                        <mat-option *ngFor="let state of states" [value]="state.state_name">
+                            {{state.state_name}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Country</mat-label>
+                    <input type="text" aria-label="Country" matInput formControlName="country" [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let country of countries" [value]="country.country_name">
+                            {{country.country_name}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Zip Code</mat-label>
+                    <input type="text" matInput formControlName="zip">
+                </mat-form-field>
+            </div>
+            <mat-form-field class="col-12">
+                <mat-label>Leave a comment</mat-label>
+                <textarea matInput formControlName="comment" placeholder="Ex. It makes me feel..."></textarea>
+              </mat-form-field>
+              <div class="col-12 mt-3 mb-3">
+                <mat-checkbox class="col-12" formControlName="terms" required>I agreed all terms and conditions</mat-checkbox>
+            </div>
+            <button type="submit" class="col-3" mat-raised-button color="primary" *ngIf="!isEditEmployee"
+                [disabled]="!studentForm.valid">Submit</button>
+            <button type="button" class="col-3" (click)="updateStudent()" *ngIf="isEditEmployee" mat-raised-button color="primary"
+                [disabled]="!studentForm.valid">Update</button>
+
+        </form>
+    </div>
+    </mat-card>
+</div>
