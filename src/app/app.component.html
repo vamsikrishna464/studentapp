@@ -1,0 +1,23 @@
+
+<div class="container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/student-list">Student Management App</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li >
+          <a [ngClass]="(this.router.url.includes('student-list')) ? 'active' : ''" routerLink="/student-list">Student List</a>
+        </li>
+        <li>
+          <a  [ngClass]="(this.router.url.includes('student-create')) ? 'active' : ''" routerLink="/student-create">Create student</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<router-outlet></router-outlet>
+<div class="container">
+  <div class="footer">
+    <p>Student Management System</p>
+  </div>
+</div>
